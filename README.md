@@ -34,3 +34,22 @@ through the destination stream automatically as well.
 
 Creates a `PeekStream` with specified windowing size (defaults to 1 kiB)
 
+# LICENSE
+
+BSD
+
+# CONTRIBUTE / DEVELOP / EXTEND
+
+Test with
+
+```sh
+make test
+make tdd      # spins a loop
+```
+
+Compiles to JS with
+
+```sh
+make all
+```
+
