@@ -1,0 +1,31 @@
+{
+  "name": "peekstream",
+  "version": "0.1.0",
+  "description": "Peek into a fixed-size window on your streams, useful for logging and debugging.",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chakrit/peekstream"
+  },
+  "keywords": [
+    "stream",
+    "peek",
+    "filter",
+    "window"
+  ],
+  "author": "Chakrit Wichian <service@chakrit.net> (http://chakrit.net)",
+  "license": "BSD",
+  "devDependencies": {
+    "coffee-script": "~1.4.0",
+    "mocha": "~1.7.3",
+    "istanbul": "~0.1.23",
+    "underscore": "~1.4.2",
+    "chai": "~1.4.0",
+    "sinon-chai": "~2.2.0",
+    "sinon": "~1.5.2",
+    "mocha-istanbul": "~0.1.0"
+  }
+}
