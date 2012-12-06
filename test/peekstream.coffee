@@ -24,6 +24,10 @@ do ->
     it 'should exports a class', ->
       @PS.should.be.a 'function'
 
+    it 'should exports itself as PeekStream property alias', ->
+      @PS.should.have.property 'PeekStream'
+      @PS.PeekStream.should.be.a 'function'
+
     it 'should exports a DEFAULT_WINDOW_SIZE property', ->
       @PS.should.have.property 'DEFAULT_WINDOW_SIZE'
       @PS.DEFAULT_WINDOW_SIZE.should.be.a 'number'

@@ -9,6 +9,7 @@ module.exports = do ->
 
   return class PeekStream extends Stream
     @DEFAULT_WINDOW_SIZE: DEFAULT_WINDOW_SIZE
+    @PeekStream: PeekStream
 
     @peek: (source, destination, size) ->
       unless source and source instanceof Stream
