@@ -21,7 +21,12 @@ module.exports = do ->
           throw new Error 'destination is not a Stream (or size is not a number)'
 
       peek = source.pipe new PeekStream size
-      peek.pipe destination if destination
+      peek.source = source
+
+      if destination
+        peek.pipe destination
+        peek.destination = destination
+
       return peek
 
 

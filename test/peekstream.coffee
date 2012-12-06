@@ -92,7 +92,7 @@ do ->
         SRC.write DATA
 
 
-    describe 'PeekStream instances', ->
+    describe 'PeekStream instances created with peek()', ->
       beforeEach -> @ps = @PS.peek SRC, DEST, SIZE
       afterEach -> delete @ps
 
@@ -105,6 +105,14 @@ do ->
 
       it 'should be instance of Stream', ->
         @ps.should.be.instanceof Stream
+
+      it 'should exports `source` stream property', ->
+        @ps.should.have.property 'source'
+        @ps.source.should.eq SRC
+
+      it 'should exports `destination` stream property', ->
+        @ps.should.have.property 'destination'
+        @ps.destination.should.eq DEST
 
       it 'should exports a `window` property with configured size', ->
         @ps.should.have.property 'window'
