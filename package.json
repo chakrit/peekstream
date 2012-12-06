@@ -1,6 +1,6 @@
 {
   "name": "peekstream",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Peek into a fixed-size window on your streams, useful for logging and debugging.",
   "main": "index.js",
   "scripts": {
