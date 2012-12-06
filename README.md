@@ -1,5 +1,7 @@
 
-# PEEK YOUR STREAMS
+[![Travis CI badge](https://secure.travis-ci.org/chakrit/peekstream.png)](http://travis-ci.org/chakrit/peekstream)
+
+# PEEK-A-BOO !
 
 PEEKSTREAM is a simple filtering stream that collects and buffers data inside a configured window
 as they're being streamed.
