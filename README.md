@@ -44,13 +44,13 @@ and any excess from the configured size is trimmed from the beginning of the buf
 
 ### require('peekstream').peek( SRC, [DEST], [SIZE] )
 
-Creates and return a new PeekStream class instance configured to peek data coming from
-`SRC`.
-
-`SRC` stream is automatically piped through the returned PeekStream.
+Creates and return a new PeekStream class instance with `SRC` stream piped through it.
 
 Additionallty, if `DEST` stream is specified, the returned PeekStream will be piped
 through the destination stream automatically as well.
+
+`SRC` and `DEST` is also accessible from the resulting stream via the `source` and
+`destination` property respectively.
 
 ### new require('peekstream').PeekStream( [SIZE] )
 
