@@ -54,6 +54,7 @@ module.exports = do ->
         @window = Buffer.concat [prev, chunk]
 
       @emit 'data', chunk
+      return true
 
     end: =>
       @emit 'end'

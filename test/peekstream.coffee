@@ -131,6 +131,17 @@ do ->
         DEST.once 'end', done
         SRC.end()
 
+      it 'should returns true for all writes, even past the window size', (done) ->
+        stub(DEST, 'write').returns false
+        DEST.once 'end', () ->
+          DEST.write.restore()
+          done()
+
+        chunk = Buffer.concat [@ps.window, @ps.window]
+        result = @ps.write chunk
+        result.should.be.true
+        SRC.end()
+
 
       # data test template
       writeExpectWindow = (chunk, action) -> (done) ->
