@@ -1,8 +1,10 @@
 
-# same as gitignore but w/ lib/ folder included
+# same as gitignore but w/ lib/ folder included and w/o src/ and test
+lib-cov/
+html-report/
+src/
+test/
 node_modules
 npm-debug.log
 v8.log
-lib-cov
-html-report
 
