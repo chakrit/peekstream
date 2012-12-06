@@ -1,0 +1,8 @@
+
+# same as gitignore but w/ lib/ folder included
+node_modules
+npm-debug.log
+v8.log
+lib-cov
+html-report
+
