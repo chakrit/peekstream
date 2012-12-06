@@ -122,6 +122,11 @@ do ->
         @ps.should.have.property 'window'
         @ps.window.should.be.instanceof Buffer
 
+      it 'should exports a zero-ed `window` buffer', ->
+        zeroes = new Buffer @ps.window.length
+        zeroes.fill 0
+        @ps.window.should.be.eql zeroes
+
       it 'should emits `end` when source emits `end`', (done) ->
         DEST.once 'end', done
         SRC.end()

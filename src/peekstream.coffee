@@ -39,6 +39,7 @@ module.exports = do ->
       @readable = true
       @size = size
       @window = new Buffer size
+      @window.fill 0
 
     write: (chunk) =>
       chunk = new Buffer chunk if typeof chunk is 'string'
