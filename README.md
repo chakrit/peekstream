@@ -12,6 +12,28 @@ Also very useful for testing complex stream interactions.
 npm install --save peekstream
 ```
 
+```js
+var peek = require('peekstream').peek;
+```
+
+# EXAMPLE
+
+With your code like this:
+
+```js
+child.stdout.pipe(process.stdout);
+```
+
+You can peek into the stream by changing it to look like this (with child process piping sample):
+
+```js
+var ps = peek(child.stdout, process.stdout);
+
+setInterval(function monitorStreamContent() {
+  console.log("PIPE: " + ps.window.toString());
+}, 1000);
+```
+
 # API
 
 PeekStream inherits from Stream and supports basic read and write operation.
@@ -52,4 +74,11 @@ Compiles to JS with
 ```sh
 make all
 ```
+
+Something to do:
+
+* Make PeekStream a two-way stream supporting cases where user wants to pipes the destination
+  stream back into the source stream as well.
+* Returns the destination stream so it is more compatible with how `pipe()` works
+  (but then how do we returned the PeekStream instance?)
 
