@@ -83,4 +83,6 @@ Something to do:
   stream back into the source stream as well.
 * Returns the destination stream so it is more compatible with how `pipe()` works
   (but then how do we returned the PeekStream instance?)
+* Better handling of back-pressure. (Now just always returns true since we don't buffer in
+  the traditional sense.)
 
