@@ -41,6 +41,8 @@ module.exports = do ->
       @window = new Buffer size
 
     write: (chunk) =>
+      chunk = new Buffer chunk if typeof chunk is 'string'
+
       if chunk.length > @size
         @window = chunk.slice chunk.length - @size
       else if chunk.length is @size

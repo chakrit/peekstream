@@ -32,7 +32,7 @@ module.exports = do ->
         @writable = true
 
       write: (data, encoding) ->
-        @emit 'data', (new Buffer data, encoding)
+        @emit 'data', data, encoding
 
       end: ->
         @emit 'end'

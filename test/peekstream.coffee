@@ -122,34 +122,43 @@ do ->
         @ps.should.have.property 'window'
         @ps.window.should.be.instanceof Buffer
 
-      it 'should collects bytes at the end of the buffer when source emits small data', (done) ->
-        chunk = DATA.slice 5
-
-        DEST.once 'data', =>
-          chunk_ = @ps.window.slice @ps.window.length - chunk.length
-          chunk_.should.eql chunk
-          done()
-
-        SRC.write chunk
-
-      it 'should copies the entire buffer content when source emits data exactly the window size', (done) ->
-        DEST.once 'data', =>
-          @ps.window.should.eql DATA
-          done()
-
-        SRC.write DATA
-
-      it 'should collects later parts of the buffer when source emits a large data', (done) ->
-        chunk = Buffer.concat [DATA, DATA.slice 5]
-
-        DEST.once 'data', =>
-          part = chunk.slice chunk.length - DATA.length
-          @ps.window.should.eql part
-          done()
-
-        SRC.write chunk
-
       it 'should emits `end` when source emits `end`', (done) ->
         DEST.once 'end', done
         SRC.end()
+
+
+      # data test template
+      writeExpectWindow = (chunk, action) -> (done) ->
+        DEST.once 'data', =>
+          action @ps.window, chunk
+          done()
+
+        SRC.write chunk
+
+      it 'should collects and handles short strings correctly',
+        writeExpectWindow (STR.slice 5), (window, chunk) ->
+          chunk_ = window.slice window.length - chunk.length
+          chunk_.should.eql new Buffer chunk
+
+      it 'should copies string content when source emits string exactly the window size',
+        writeExpectWindow STR, (window, chunk) ->
+          window.toString().should.eq STR
+
+      it 'should collects later parts of the string when source emits a large string',
+        writeExpectWindow (STR + STR.slice 5), (window, chunk) ->
+          part = chunk.slice chunk.length - STR.length
+          window.toString().should.eq part
+
+      it 'should collects bytes at the end of the buffer when source emits small data',
+        writeExpectWindow (DATA.slice 5), (window, chunk) ->
+          chunk_ = window.slice window.length - chunk.length
+          chunk_.should.eql chunk
+
+      it 'should copies the entire buffer content when source emits data exactly the window size',
+        writeExpectWindow DATA, (window, chunk) ->
+          window.should.eql DATA
+
+      it 'should collects later parts of the buffer when source emits a large data',
+        writeExpectWindow (Buffer.concat [DATA, DATA.slice 5]), (window, chunk) ->
+          window.should.eql chunk.slice chunk.length - DATA.length
 
